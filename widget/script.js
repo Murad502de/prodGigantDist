@@ -5,7 +5,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
         let self = this;
 
         this.config = {
-            baseUrl : 'https://bac37995-772f-4460-9d4d-2cacb1e7d341.mock.pstmn.io', // 'https://growth-amo.gigwork.ru',
+            baseUrl : 'https://growth-amo.gigwork.ru',
             name    : 'gigantDist',
         },
 
@@ -1559,7 +1559,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                         self.system().area !== "lcard"
                     )
                     {
-                        //self.getters.getStatus( self.renderers.renderSwitcher );
+                        self.getters.getStatus( self.renderers.renderSwitcher );
                         self.getters.getValPipeSwitch(
                             {
                                 exec   : self.renderers.renderPipelineSwitcher,
