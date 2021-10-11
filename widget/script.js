@@ -964,6 +964,9 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
             inputStngPer     : function () {
                 console.debug( self.config.name + ' << [handler] : inputStngPer' ); // Debug
 
+                $( `.${self.selectors.percentDistSave}` ).addClass( `${self.selectors.saveBtnBlue}` ); 
+                $( `.${self.selectors.percentDistSave}` ).removeClass( 'button-input-disabled' );
+
                 let regexpStr = /[A-Za-zА-Яа-яЁё.,\-_\s+]/g;
 
                 $( this )[ 0 ].value = $( this )[ 0 ].value.replace( regexpStr, "" );
@@ -994,6 +997,9 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
 
             inputStngCount : function () {
                 console.debug( self.config.name + ' << [handler] : inputStngCount' ); // Debug
+
+                $( `.${self.selectors.countDistSave}` ).addClass( `${self.selectors.saveBtnBlue}` ); 
+                $( `.${self.selectors.countDistSave}` ).removeClass( 'button-input-disabled' );
 
                 let regexpStr = /[A-Za-zА-Яа-яЁё.,\-_\s+]/g;
 
