@@ -1,0 +1,40 @@
+<div id="list__footer" class="list__footer">
+    <div class="list__footer__items-pagination" id="list_pagination" data-max-page="17">
+        <div class="pagination-buttons">
+            <div class="list-top-nav__icon-button {{ data.widgetPrefix }}_prev js-pagination-prev list-top-nav__icon-button_pagination  " title="">
+                <svg class="svg-icon svg-common--bold-arrow-dims">
+                    <use xlink:href="#common--bold-arrow"></use>
+                </svg>
+            </div>
+            <div class="list-top-nav__icon-button {{ data.widgetPrefix }}_next js-pagination-next list-top-nav__icon-button_pagination  " title="">
+                <svg class="svg-icon svg-common--bold-arrow-dims">
+                    <use xlink:href="#common--bold-arrow"></use>
+                </svg>
+            </div>
+            <button type="button" class="button-input js-pagination-prev pagination-buttons__btn" tabindex="">
+                <span class="button-input-inner ">
+                    <span class="icon icon-inline icon-page-prev"></span>
+                </span>
+            </button>
+            <button type="button" class="button-input js-pagination-next pagination-buttons__btn" tabindex="">
+                <span class="button-input-inner ">
+                    <span class="icon icon-inline icon-page-next"></span>
+                </span>
+            </button>
+        </div>
+        <div class="pagination-pages">
+
+            {% include 'templates/paginationPages.twig' %}
+
+        </div>
+        <div class="pagination__descr">
+            <div class="pagination__descr__item pagination__descr__item-mac">← Alt →</div>
+            <div class="pagination__descr__item pagination__descr__item-win">← Ctrl →</div>
+        </div>
+        <div class="pagination__rows">
+
+            {% include 'templates/paginationRows.twig' %}
+
+        </div>
+    </div>
+</div>

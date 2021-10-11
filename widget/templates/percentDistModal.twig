@@ -1,0 +1,37 @@
+<div class="modal-body__inner">
+    <span class="modal-body__close">
+        <span class="icon icon-modal-close"></span>
+    </span>
+
+    <h2 class="modal-body__caption head_2">Процент распределения сделок из технической воронки</h2>
+
+    <form id="custom_types_form">
+        <div class="modal-body__inner__todo-types" data-count="1" style="margin-top: 10px;">
+            <div id="" class="{{ data.widgetPrefix }}_percent_title modal-body__inner__todo-types__item js-animate js-item-animate" data-id="">      
+                <input data-value="" name="ОО" class="{{ data.widgetPrefix }}_oo_title modal-body__inner__groups__item__input js-custom-type-item text-input" type="text" value="" placeholder="ОО" maxlength="32" autocomplete="off" disabled="" style="width: 200px;">
+                <input data-value="" name="" class="{{ data.widgetPrefix }}_input-dist_percent {{ data.widgetPrefix }}_percent_oo_value modal-body__inner__groups__item__input js-custom-type-item text-input" type="text" value="{{ data.oo }}" placeholder="" maxlength="32" data-placeholder="" autocomplete="off" style="width: 200px;margin-left: 50px;">
+            </div>
+
+            <div id="" class="{{ data.widgetPrefix }}_percent_value modal-body__inner__todo-types__item js-animate js-item-animate">     
+                <input data-value="" name="" class="{{ data.widgetPrefix }}_yo_title modal-body__inner__groups__item__input js-custom-type-item text-input" type="text" value="" placeholder="УО" maxlength="32" data-placeholder="" autocomplete="off" disabled="" style="width: 200px;">
+                <input data-value="" name="" class="{{ data.widgetPrefix }}_input-dist_percent {{ data.widgetPrefix }}_percent_yo_value modal-body__inner__groups__item__input js-custom-type-item text-input" type="text" value="{{ data.yo }}" placeholder="" maxlength="32" data-placeholder="" autocomplete="off" style="width: 200px; margin-left: 50px;">
+            </div>
+        </div>
+    </form>
+
+    <div class="modal-body__actions" style="display: flex; justify-content: flex-end;">
+        <button type="button" class="{{ data.widgetPrefix }}_percent-save button-input button-input-disabled js-modal-accept__percent-dist js-modal-accept__dist" tabindex="1">
+            <span class="button-input-inner ">
+                <span class="button-input-inner__text">
+                    Сохранить
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="button-input button-cancel " tabindex="2" style="">
+            <span>
+                Отменить
+            </span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="modal-body__inner">
+    <span class="modal-body__close">
+        <span class="icon icon-modal-close"></span>
+    </span>
+
+    <h2 class="modal-body__caption head_2">
+        Управление ролями пользователей
+    </h2>
+
+    <form id="custom_types_form">
+        <div class="modal-body__inner__todo-types" data-count="1" style="margin-top: 10px;">
+            {% for role in data.roles %}
+                <div id="{{ role.role_id }}" data-age="old" class="{{ data.widgetPrefix }}_role modal-body__inner__todo-types__item js-animate js-item-animate" data-id="{{ role.role_id }}" data-delete="delete">
+                    <input data-value="{{ role.name }}" name="{{ role.name }}" class="{{ data.widgetPrefix }}_role modal-body__inner__groups__item__input js-custom-type-item text-input" type="text" value="{{ role.name }}" placeholder="Название роли" maxlength="32" data-placeholder="Название роли" autocomplete="off">
+                    <span id="del_todo_type{{ role.role_id }}" class="button-delete modal-body__inner__todo-types__item__remove js-remove-todo-type-item">
+                        <span class="icon icon-delete-trash"></span>
+                    </span>
+                </div>
+            {% endfor %}
+
+            {% include 'templates/addNewRoleInput.twig' with {'widgetPrefix': data.widgetPrefix} %}
+        </div>
+    </form>
+
+    <div class="modal-body__actions ">
+        <button type="button" class="button-input button-input-disabled js-modal-accept__roles" tabindex="1">
+            <span class="button-input-inner ">
+                <span class="button-input-inner__text">
+                    Сохранить
+                </span>
+            </span>
+        </button>
+
+        <button type="button" class="button-input button-cancel " tabindex="2" style="">
+            <span>
+                Отменить
+            </span>
+        </button>
+    </div>
+</div>

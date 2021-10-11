@@ -1,0 +1,37 @@
+<div class="{{ data.widgetPrefix }}_moredist_wrapper list__top__actions" style="order: 3; margin-right: 5px;">
+    <button type="button" id="{{data.id}}" class="button-input" style="border: 0;">
+        <span class="button-input-inner" style="">          
+            <span class="button-input-inner button-input-more-inner" style="padding: 0;">          
+                <svg class="svg-icon svg-controls--button-more-dims" style="margin: 0;">
+                    <use xlink:href="#controls--button-more"></use>
+                </svg>
+            </span>
+        </span>
+    </button>
+    
+    <ul class="button-input__context-menu context-menu-pipeline {{ data.widgetPrefix }}_more_dist-menu" style="display: none; left: 75%;">
+        <li class="button-input__context-menu__item  element__ js-lead_tile" id="{{ data.widgetPrefix }}_percent-dist">
+            <div class="button-input__context-menu__item__inner">
+                <svg class="button-input__context-menu__item__icon svg-icon svg-common--settings-key-dims ">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#common--settings-key"></use>
+                </svg>
+
+                <span class="button-input__context-menu__item__text ">
+                    Процент распределения
+                </span>
+            </div>
+        </li>
+
+        <li class="button-input__context-menu__item  element__ js-lead_tile" id="{{ data.widgetPrefix }}_count-dist">
+            <div class="button-input__context-menu__item__inner">
+                <svg class="button-input__context-menu__item__icon svg-icon svg-common--settings-key-dims ">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#common--settings-key"></use>
+                </svg>
+
+                <span class="button-input__context-menu__item__text ">
+                    Кол-во распределяемых сделок
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,12 @@
+{% for link in data.links %}
+    {% if link.label == 'pagination.previous' or link.label == 'pagination.next' %}
+    {% else %}
+        <div class="pagination-link__wrapper 
+            {% if link.active %}
+                pagination-link__wrapper-active
+            {% endif %}
+        ">
+            <a href="#" data-link="{{ link.url }}" class="pagination-link {{ data.widgetPrefix }}_js-pagination-link" data-page="{{ link.label }}">{{ link.label }}</a>
+        </div>
+    {% endif %}
+{% endfor %}

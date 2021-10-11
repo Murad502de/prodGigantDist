@@ -1,0 +1,25 @@
+<div class="b-rights__table_col b-rights__table_col-action b-rights__table_col-view" style="display: flex;">
+	<div class="b-rights__road {{ data.widgetPrefix }}_listMenu">
+		{% if data.active == 2 %}
+			<span data-value="D" class="c-denied"></span>
+			<span data-value="M" class="c-responsible"></span>
+			<span data-value="A" class="c-allowed active"></span>
+		{% elseif data.active == 1 %}
+			<span data-value="D" class="c-denied"></span>
+			<span data-value="M" class="c-responsible active"></span>
+			<span data-value="A" class="c-allowed"></span>
+		{% elseif data.active == 0 %}
+			<span data-value="D" class="c-denied active"></span>
+			<span data-value="M" class="c-responsible"></span>
+			<span data-value="A" class="c-allowed"></span>
+		{% endif %}
+	</div>
+	<div class="button__text" style="margin-left: 10px; margin-top: 4px;">
+		<ul>
+			<li style="font-size: 10px;">Не работаю</li>
+			<li style="font-size: 10px;">Пауза</li>
+			<li style="font-size: 10px;">На работе</li>
+		</ul>
+	</div>
+	<input type="hidden" name="contacts_view" value="A" data-right="CONTACT_view" data-action="view" data-entity="contacts" class="b-rights__input" data-init-value="A">
+</div>

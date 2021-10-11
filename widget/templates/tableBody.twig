@@ -1,0 +1,82 @@
+{% for user in data.users %}
+    <div data-id = "tableRow" id="{{ user.staff_id }}" class="{{ data.widgetPrefix }}_list-row js-list-row js-pager-list-item__1  js-page-delimiter">
+
+        <div data-id = "tableRow_name__wrapper" class="{{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-name list-row__cell-name" data-field-code="name" data-field-id="10">
+            <div data-id = "tableRow_name__inner" class="{{ data.widgetPrefix }}_content-table__item__inner {{ data.widgetPrefix }}_content-table__item__inner-template-name {{ data.widgetPrefix }}_has-tags" style="color: #0057a9;">
+                <span data-id = "tableRow_name__span" data-name="{{ user.name }}">
+                    {{ user.name }}
+                </span>
+            </div>
+        </div>
+
+        <div data-id = "tableRow_role__wrapper" class="{{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-main_contact list-row__cell-main_contact" data-field-code="role" data-field-id="20">
+            <div data-id = "tableRow_role__inner" class="{{ data.widgetPrefix }}_content-table__item__inner">
+                <span data-id = "tableRow_role__span" data-name="{{ user.role_name }}">
+                    {{ user.role_name }}
+                </span>
+            </div>
+        </div>
+        
+        <div id="{{ user.staff_id }}" data-id = "tableRow_weight__wrapper" class="{{ data.widgetPrefix }}_weight_dist {{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-link list-row__cell-contact_company_name" data-field-code="weight">
+            <div data-id = "tableRow_weight__inner" class="{{ data.widgetPrefix }}_content-table__item__inner">
+                <span data-id = "tableRow_weight__span">
+                    {{ user.weight }}
+                </span>
+            </div>
+
+            <div id="{{ user.staff_id }}" class="weight_editPanel" style="position: absolute; left: 0px; top: 0px; flex-direction: row; z-index: 100; -webkit-box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.32); -moz-box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.32); box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.32); display: none;">
+                <div style="padding-left: 10px; ">
+                    <input type="text" class="" id="editWeight_input" placeholder="0" spellcheck="false" autocomplete="off" value="0" style="box-sizing: border-box; border-bottom: 1px solid #6299F8; height: 30px;">
+                </div>
+                <button type="button" class="button-input button-input_white" id="cancelEditWeight" style="background: white; border: 0; height: 35px; color: #9CA1A4;">
+                    <span class="button-input-inner " style="">          
+                        <span class="button-input-inner__text">Отменить</span>
+                    </span>
+                </button>
+                <button type="button" class="button-input button-input_blue" id="confirmEditWeight" style="margin: 0; height: 35px;">
+                    <span class="button-input-inner " style="margin: 0 0 3px 0;">          
+                        <span class="button-input-inner__text" style="">Сохранить</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div data-id = "tableRow_left__wrapper" class="{{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-link list-row__cell-contact_company_name" data-field-code="left">
+            <div data-id = "tableRow_left__inner" class="{{ data.widgetPrefix }}_content-table__item__inner">
+                <span data-id = "tableRow_left__span">
+                    {{ user.left }}
+                </span>
+            </div>
+        </div>
+
+        <div data-id = "tableRow_active_minutes__wrapper" class="{{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-link list-row__cell-contact_company_name" data-field-code="active_minutes">
+            <div data-id = "tableRow_active_minutes__inner" class="{{ data.widgetPrefix }}_content-table__item__inner">
+                <span data-id = "tableRow_active_minutes__span">
+                    {{ user.active_minutes }}
+                </span>
+            </div>
+        </div>
+
+        <div id="{{ user.staff_id }}" class="{{ data.widgetPrefix }}_list-row__cell js-list-row__cell list-row__cell-template-link list-row__cell-contact_company_name tableRow_active_status__wrapper">
+            <div data-id = "tableRow_active_status__switcher" class="b-rights__table_col b-rights__table_col-action b-rights__table_col-view {{ data.widgetPrefix }}_switcher">
+                <div id="{{ user.staff_id }}" class="b-rights__road {{ data.widgetPrefix }}_switcher__inner {{ data.widgetPrefix }}_distMenu" data-value="{{ user.status }}" data-field-code="status">
+                    {% if user.status == 2 %}
+                        <span id="{{ user.staff_id }}" data-value="D" class="c-denied"></span>
+                        <span id="{{ user.staff_id }}" data-value="M" class="c-responsible"></span>
+                        <span id="{{ user.staff_id }}" data-value="A" class="c-allowed active"></span>
+                    {% elseif user.status == 1 %}
+                        <span id="{{ user.staff_id }}" data-value="D" class="c-denied"></span>
+                        <span id="{{ user.staff_id }}" data-value="M" class="c-responsible active"></span>
+                        <span id="{{ user.staff_id }}" data-value="A" class="c-allowed"></span>
+                    {% elseif user.status == 0 %}
+                        <span id="{{ user.staff_id }}" data-value="D" class="c-denied active"></span>
+                        <span id="{{ user.staff_id }}" data-value="M" class="c-responsible"></span>
+                        <span id="{{ user.staff_id }}" data-value="A" class="c-allowed"></span>
+                    {% endif %}
+                </div>
+                <input type="hidden" name="contacts_view" value="A" data-right="CONTACT_view" data-action="view" data-entity="contacts" class="b-rights__input" data-init-value="A">
+            </div>
+        </div>
+
+    </div>
+{% endfor %}
