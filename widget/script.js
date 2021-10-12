@@ -43,6 +43,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
             yoPercent                : `${self.config.name}_percent_yo_value`,
             ooCount                  : `${self.config.name}_count_oo_value`,
             yoCount                  : `${self.config.name}_count_yo_value`,
+            pipeswitchWrap           : `${self.config.name}_pipeswitch_wrap`,
 
             js : {
                 tableRow         : 'div[data-id="tableRow"]',
@@ -1566,6 +1567,31 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                     )
                     {
                         self.getters.getStatus( self.renderers.renderSwitcher );
+                    }
+                }
+                else
+                {
+                    console.debug( 'switcher exists' ); // Debug
+                }
+
+                if ( !$( `.${self.selectors.pipeswitchWrap}` ).length )
+                {
+                    console.debug( 'pipeline switcher does not exist' ); // Debug
+
+                    if (
+                        (
+                            AMOCRM.data.current_entity === "leads-pipeline"
+                                ||
+                            AMOCRM.data.current_entity === "leads"
+                                ||
+                            AMOCRM.data.current_entity === "todo-line"
+                                ||
+                            AMOCRM.data.current_entity === "todo"
+                        )
+                            &&
+                        self.system().area !== "lcard"
+                    )
+                    {
                         self.getters.getValPipeSwitch(
                             {
                                 exec   : self.renderers.renderPipelineSwitcher,
@@ -1579,7 +1605,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                 }
                 else
                 {
-                    console.debug( 'switcher exists' ); // Debug
+                    console.debug( 'pipeline switcher exists' ); // Debug
                 }
 
                 return true;
@@ -1637,7 +1663,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                     $( document ).on( 'click', `li[id="${self.selectors.idLiPercentDist}"]`, self.handlers.percentDist );
                     $( document ).on( 'click', `li[id="${self.selectors.idLiCountDist}"]`, self.handlers.countDist );
 
-                    // events of form for istSettings
+                    // events of form for distSettings from moreDistButton
                     $( document ).on( 'click', `.${self.selectors.percentDistSave}.${self.selectors.saveBtnBlue}`, self.handlers.percentDistSave );
                     $( document ).on( 'click', `.${self.selectors.countDistSave}.${self.selectors.saveBtnBlue}`, self.handlers.countDistSave );
                     $( document ).on( 'input', `.${self.selectors.inputSettingsDistPercent}`, self.handlers.inputStngPer );
