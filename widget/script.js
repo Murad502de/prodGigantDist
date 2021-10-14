@@ -44,6 +44,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
             ooCount                  : `${self.config.name}_count_oo_value`,
             yoCount                  : `${self.config.name}_count_yo_value`,
             pipeswitchWrap           : `${self.config.name}_pipeswitch_wrap`,
+            switcher                 : `${self.config.name}__switcher`,
 
             js : {
                 tableRow         : 'div[data-id="tableRow"]',
@@ -73,7 +74,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
 
         // methods for getting
         this.getters = {
-            getData          : function ( currentPage, callback = null, init = false ) {
+            getData : function ( currentPage, callback = null, init = false ) {
                 self.renderers.renderSpinner();
                 self.renderers.removeTable();
 
@@ -124,7 +125,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                 );
             },
 
-            getRoleData      : function ( callback = null ) {
+            getRoleData : function ( callback = null ) {
                 $.get(
                     self.config.baseUrl + '/api/distribution/roles',
 
@@ -139,7 +140,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                 );
             },
 
-            getStatus        : function ( callback = null ) {
+            getStatus : function ( callback = null ) {
                 $.get(
                     self.config.baseUrl + '/api/distribution/staffs/' + AMOCRM.constant( 'user' ).id,
 
@@ -152,7 +153,33 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                         {
                             console.debug( 'switcher can be render' ); // Debug
 
-                            callback( '.list__top__actions', data.status );
+                            let getValPipeSwitch = _.after( 2, self.getters.getValPipeSwitch );
+
+                            self.renderers.renderSwitcher(
+                                '.list__top__actions',
+                                data.status,
+
+                                {
+                                    exec   : getValPipeSwitch,
+                                    params : {
+                                        exec   : self.renderers.renderPipelineSwitcher,
+                                        params : {
+                                            selector : `.${self.selectors.switcher}`,
+                                            location : 'before'
+                                        }
+                                    }
+                                }
+                            );
+
+                            getValPipeSwitch(
+                                {
+                                    exec   : self.renderers.renderPipelineSwitcher,
+                                    params : {
+                                        selector : `.${self.selectors.switcher}`,
+                                        location : 'before'
+                                    }
+                                }
+                            );
                         }
                     },
 
@@ -1364,7 +1391,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                 self.renderers.render( 'addNewRoleInput', roleInputData, callback );
             },
 
-            renderSwitcher         : function ( selector, status, location = 'append' ) {
+            renderSwitcher         : function ( selector, status, callback = null, location = 'append' ) {
                 let switcherData = {
                     active: status,
                     widgetPrefix: self.config.name
@@ -1372,6 +1399,11 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
 
                 self.renderers.render( 'switcher', switcherData, ( html ) => {
                     $( selector )[ location ]( html );
+
+                    if ( callback )
+                    {
+                        callback.exec( callback.params );
+                    }
                 } );
             },
 
@@ -1566,46 +1598,12 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                         self.system().area !== "lcard"
                     )
                     {
-                        self.getters.getStatus( self.renderers.renderSwitcher );
+                        self.getters.getStatus();
                     }
                 }
                 else
                 {
                     console.debug( 'switcher exists' ); // Debug
-                }
-
-                if ( !$( `.${self.selectors.pipeswitchWrap}` ).length )
-                {
-                    console.debug( 'pipeline switcher does not exist' ); // Debug
-
-                    if (
-                        (
-                            AMOCRM.data.current_entity === "leads-pipeline"
-                                ||
-                            AMOCRM.data.current_entity === "leads"
-                                ||
-                            AMOCRM.data.current_entity === "todo-line"
-                                ||
-                            AMOCRM.data.current_entity === "todo"
-                        )
-                            &&
-                        self.system().area !== "lcard"
-                    )
-                    {
-                        self.getters.getValPipeSwitch(
-                            {
-                                exec   : self.renderers.renderPipelineSwitcher,
-                                params : {
-                                    selector : self.selectors.js.addNewLeadButton,
-                                    location : 'after'
-                                }
-                            }
-                        );
-                    }
-                }
-                else
-                {
-                    console.debug( 'pipeline switcher exists' ); // Debug
                 }
 
                 return true;
